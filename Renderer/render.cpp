@@ -1,5 +1,6 @@
 #include "render.h"
-
+#include "glm/ext.hpp"
+#include "glm/gtc/type_ptr.hpp"
 geometry makeGeometry(vertex * verts, size_t vertCount, unsigned int * indices, size_t indexCount)
 {
 	//create an instance of geometry
@@ -71,4 +72,9 @@ void draw(const shader & shad, const geometry & geo)
 	glUseProgram(shad.program);
 	glBindVertexArray(geo.vao);
 	glDrawElements(GL_TRIANGLES, geo.size, GL_UNSIGNED_INT, 0);
+}
+
+void setUniform(const shader & shad, GLuint location, const glm::mat4 & value)
+{
+	glProgramUniformMatrix4fv(shad.program, location, 1, GL_FALSE, glm::value_ptr(value));
 }

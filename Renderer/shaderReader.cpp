@@ -18,7 +18,7 @@ std::string* fileToString(const char* fileName)
 			std::cout << line << '\n';
 		}
 		myfile.close();
-		printf("\n================================================================================\nEND OF FILE");
+		printf("\n================================================================================END OF FILE\n");
 	}
 
 	else std::cout << "Unable to open file";

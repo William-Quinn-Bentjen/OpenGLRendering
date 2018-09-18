@@ -1,5 +1,6 @@
 #pragma once
 #include "glew/glew.h"
+#include "glm/glm.hpp"
 struct vertex
 {
 	float pos[4];
@@ -19,3 +20,4 @@ void freeGeometry(geometry &geo);
 shader makeShader(const char * vertSource, const char * fragSource);
 void freeShader(shader &shad);
 void draw(const shader &shad, const geometry & geo);
+void setUniform(const shader &shad, GLuint location, const glm::mat4 &value);

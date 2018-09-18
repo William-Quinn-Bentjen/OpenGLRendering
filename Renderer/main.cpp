@@ -1,6 +1,8 @@
 #include "render.h"
 #include "context.h"
 #include "shaderReader.h"
+#include "glm/glm.hpp"
+#include "glm/ext.hpp"
 #include <iostream>
 int main()
 {
@@ -12,33 +14,24 @@ int main()
 		{{ .5f,-.5f, 0, 1 }},
 		{{ 0,.5f, 0, 1 }}
 	};
-	//upside down tri
-	vertex triVerts2[] =
-	{
-		{ { .5f,.5f, 0, 1 } },
-		{ { -.5f,.5f, 0, 1 } },
-		{ { 0,-.5f, 0, 1 } }
-	};
 	unsigned triIndices[] = { 2,1,0 };
 	geometry triangle = makeGeometry(triVerts, 3, triIndices, 3);
-	//upside down tri
-	geometry triangle2 = makeGeometry(triVerts2, 3, triIndices, 3);
-	/*const char * basicVert =
-		"#version 410\n"
-		"layout (location = 0) in vec4 position;\n"
-		"void main() {gl_Position = position;}";
-	const char * basicFrag =
-		"#version 330\n"
-		"out vec4 vertColor;\n"
-		"void main() {vertColor = vec4(1.0, 0.0, 0.0 ,1.0); }";
-	shader basicShad = makeShader(basicVert, basicFrag);*/
 	shader fileShad = makeShaderFrom("vertexShaderExample.txt", "fragmentShaderExample.txt");
+	shader mvpShad = makeShaderFrom("mvpVert.txt", "fragmentShaderExample.txt");
+	glm::mat4 cam_proj = glm::perspective(glm::radians(45.f), 800.0f / 600.0f, 0.1f, 1000.0f);
+	glm::mat4 cam_view = glm::lookAt(glm::vec3(0, 0, -1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	glm::mat4 triangle_model = glm::identity<glm::mat4>();
 	while (!game.shouldClose())
 	{
 		game.tick();
-		draw(fileShad, triangle);
-		//upside down tri
-		draw(fileShad, triangle2);
+		game.clear();
+
+		triangle_model = glm::rotate(triangle_model, glm::radians(5.f), glm::vec3(0, 1, 0));
+
+		setUniform(mvpShad, 0, cam_proj);
+		setUniform(mvpShad, 1, cam_view);
+		setUniform(mvpShad, 2, triangle_model);
+		draw(mvpShad, triangle);
 	}
 	game.term();
 	return 0;

@@ -43,6 +43,9 @@
     <Text Include="fragmentShaderExample.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="mvpVert.txt">
+      <Filter>Source Files</Filter>
+    </Text>
     <Text Include="vertexShaderExample.txt">
       <Filter>Source Files</Filter>
     </Text>
