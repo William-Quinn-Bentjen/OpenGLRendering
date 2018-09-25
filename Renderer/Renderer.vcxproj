@@ -148,7 +148,11 @@
   <ItemGroup>
     <Text Include="fragmentShaderExample.txt" />
     <Text Include="mvpVert.txt" />
+    <Text Include="texFrag.txt" />
     <Text Include="vertexShaderExample.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\..\Rendering\Assets\uvchecker.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

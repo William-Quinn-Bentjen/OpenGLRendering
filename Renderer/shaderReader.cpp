@@ -26,15 +26,20 @@ std::string* fileToString(const char* fileName)
 	//strcpy(string, output.c_str);
 	//return output.c_str;
 }
-
+//shader makeShaderFrom(std::string fileName)
+//{
+//	const char * vertSource = fileName.c_str + ".vert";
+//	const char * fragSource = fileName.c_str + ".frag";
+//	return makeShaderFrom(vertSource, fragSource);
+//}
 shader makeShaderFrom(const char * vertSource, const char * fragSource)
 {
 	const char * vertInput = fileToString(vertSource)->c_str();
 	const char * fragInput = fileToString(fragSource)->c_str();
 	shader newShad{};
 	newShad = makeShader(vertInput, fragInput);
-	delete(vertInput);
-	delete(fragInput);
+	//delete(vertInput);
+	//delete(fragInput);
 	return newShad;
 }
 
@@ -47,4 +52,11 @@ shader makeShaderFrom(std::string vertSource, std::string fragSource)
 	//delete(vertInput);
 	//delete(fragInput);
 	return newShad;
+}
+shader makeShaderFrom(std::string source)
+{
+	std::string vertInput = source + ".vert";
+	std::string fragInput = source + ".frag";
+	shader newShad{};
+	return makeShaderFrom(vertInput, fragInput);
 }

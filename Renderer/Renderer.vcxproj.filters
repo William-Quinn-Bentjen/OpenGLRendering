@@ -49,5 +49,11 @@
     <Text Include="vertexShaderExample.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="texFrag.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\..\Rendering\Assets\uvchecker.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
